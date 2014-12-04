@@ -1,0 +1,32 @@
+{%extends "/layouts/base.html"%}
+
+{%block content%}
+<div class="col-md-3">
+  <ul class="nav nav-pills nav-stacked">
+    <li role="presentation">
+      <a href="/mail/compose/{{email}}">
+	<span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Compose Mail</a></li>
+    <li role="presentation" class="active"><a href="/mail/index/{{email}}">Inbox</a></li>
+    <li role="presentation"><a href="/mail/sentmails/{{email}}">Sent Mail</a></li>
+  </ul>
+</div>
+<div class="col-md-8 panel panel-default" style="min-height:500px;">
+  <table class="table table-condensed">
+    <thead>
+      <th>Subject</th>
+      <th>Sender</th>
+      <th>Message</th>
+    </thead>
+    <tbody>
+      {%for inbox in inboxes%}
+      <tr>
+	<td>{{inbox.subject}}</td>
+	<td>{{inbox.sender}}</td>
+	<td>{{inbox.message}}</td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+</div>
+{%endblock%}
+

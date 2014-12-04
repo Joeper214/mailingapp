@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+  </head>
+  
+  <body>
+    <content>
+      <nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	  <div class="navbar-header">
+	    <a class="navbar-brand" href="#">
+              {{email}}
+	    </a>
+	  </div>
+	</div>
+      </nav>
+      <div class="col-md-6 col-md-offset-3 panel panel-default" style="min-height:500px;padding-top:30px;">
+	<h3>Sign Up</h3>
+	<hr>
+	<form action="/users/signup" class="form" method="POST">
+	  {%if s_msg%}
+	  <p class="alert alert-success">{{s_msg}}</p>
+	  <a href="/users/login">Go to Login</a>
+	  {%endif%}
+	  {%if e_msg%}
+	     <p class="alert alert-danger">{{e_msg}}</p>
+	  {%endif%}
+
+	  <input type="hidden" name="sender" value="{{email}}">
+	  <div class="form-group">
+	    <label>Email</label>
+	    <input name="email" type="text" name="recipient" class="form-control">
+	  </div>
+
+	  <div class="form-group">
+	    <label>Password</label>
+	    <input name="password" type="password" name="recipient" class="form-control">
+	  </div>
+	  
+	  <div class="form-group">
+	    <label>Confirm Password</label>
+	    <input type="password" name="confirm_pass" class="form-control">
+	  </div>
+
+	  <div class="form-group">
+	    <button type="submit" class="btn btn-primary">Signup</button>
+	  </div>
+	  
+	</form>
+      </div>
+    </content>
+  </body>
+  
+</html>

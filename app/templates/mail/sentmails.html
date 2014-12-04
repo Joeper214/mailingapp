@@ -1,0 +1,83 @@
+{%extends "/layouts/base.html"%}
+
+{%block content%}
+<div class="col-md-3">
+  <ul class="nav nav-pills nav-stacked">
+    <li role="presentation">
+      <a href="/mail/compose/{{email}}">
+	<span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Compose Mail</a></li>
+    <li role="presentation" ><a href="/mail/index/{{email}}">Inbox</a></li>
+    <li role="presentation" class="active"><a href="/mail/sentmails/{{email}}">Sent Mail</a></li>
+  </ul>
+</div>
+<div class="col-md-8 panel panel-default" style="min-height:500px;">
+  <table class="table table-condensed">
+    <thead>
+      <th>Subject</th>
+      <th>Recipient</th>
+      <th>Message</th>
+    </thead>
+    <tbody>
+      {%for sent in sentmails%}
+      <tr>
+	<td>{{sent.subject}}</td>
+	<td>{{sent.recipient}}</td>
+	<td>{{sent.message}}</td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+</div>
+{%endblock%}
+
+
+
+<!----<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+  </head>
+  
+  <body>
+    <content>
+      <nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	  <div class="navbar-header">
+	    <a class="navbar-brand" href="#">
+              {{email}}
+	    </a>
+	  </div>
+	</div>
+      </nav>
+      <div class="col-md-3">
+	<ul class="nav nav-pills nav-stacked">
+	  <li role="presentation">
+	    <a href="/mail/compose/{{email}}">
+	      <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Compose Mail</a></li>
+	  <li role="presentation" ><a href="/mail/index/{{email}}">Inbox</a></li>
+	  <li role="presentation" class="active"><a href="/mail/sentmails/{{email}}">Sent Mail</a></li>
+	</ul>
+      </div>
+      <div class="col-md-8 panel panel-default" style="min-height:500px;">
+	<table class="table table-condensed">
+	  <thead>
+	    <th>Subject</th>
+	    <th>Recipient</th>
+	    <th>Message</th>
+	  </thead>
+	  <tbody>
+	    {%for sent in sentmails%}
+	      <tr>
+		<td>{{sent.subject}}</td>
+		<td>{{sent.recipient}}</td>
+		<td>{{sent.message}}</td>
+	      </tr>
+	    {%endfor%}
+	  </tbody>
+	</table>
+      </div>
+    </content>
+  </body>
+  
+</html>
+--->

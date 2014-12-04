@@ -15,10 +15,10 @@ class Users(BasicModel):
 
     @classmethod
     def create(cls, params):
-        id = '%s' % (params['email'])
-        item = cls(id=id, **params)
+        item = cls(email = params['email'],
+                   password = params['password'])
         item.put()
-        return item
+
 
     @classmethod
     def query_key(cls, keyname):
@@ -26,5 +26,7 @@ class Users(BasicModel):
         if instance is not None:
             return instance
         return None
+
+    
 
         
