@@ -1,44 +1,23 @@
 from ferris import Controller, route
-from app.models.users import Users
+from google.appengine.api import memcache
+from google.appengine.ext import ndb
+from app.models.user import User
+from app.components.users import Users
 
 class Users(Controller):
-    u = Users()
-    
+
+    class Meta:
+        components = (Users,)
+        model = User
+        
     def list(self):
         return 'list'
     
     @route
     def login(self):
-
-        if self.request.method == 'POST':
-            email = self.request.params['email']
-            password = self.request.params['password']
-            user = self.u.find_by_email(email)
-            if None:
-                self.context['msg'] = 'Invalid email or password' 
-            else:
-                if user.password == password:
-                    return self.redirect(self.uri(controller='mail', action='index', email=email))
-                else:
-                    self.context['msg'] = 'Invalid email or password'
+        return self.components.users.authenticate()
+    
 
     @route
     def signup(self):
-        if self.request.method == 'POST':
-            email = self.request.params['email']
-            password = self.request.params['password']
-            confirm_pass = self.request.params['confirm_pass']
-            params = {'email': email, 'password': password}
-
-            if password != confirm_pass:
-                self.context['e_msg'] = 'Password and Confirm Password does not match' 
-            else:
-                self.u.create(params)
-                self.context['s_msg'] = 'You registration successfully completed'
-
-
-
-                
-
-    def run(self):
-        return 'run'
+        self.components.users.signup()

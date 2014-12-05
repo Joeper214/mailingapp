@@ -1,7 +1,7 @@
 from ferris import BasicModel, ndb
 from ferris.behaviors import searchable
 
-class Users(BasicModel):
+class User(BasicModel):
     class Meta:
         behaviors = (searchable.Searchable,)
         search_index = ('global',)

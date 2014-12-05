@@ -4,7 +4,7 @@ from ferris.core import routing, plugins
 routing.auto_route()
 
 # Default root route
-routing.redirect("/",  to="/posts")
+routing.redirect("/",  to="/users/login")
 
 
 # Plugins
