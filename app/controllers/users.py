@@ -10,9 +10,6 @@ class Users(Controller):
         components = (Users,)
         model = User
         
-    def list(self):
-        return 'list'
-    
     @route
     def login(self):
         return self.components.users.authenticate()

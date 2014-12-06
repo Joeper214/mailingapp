@@ -20,7 +20,7 @@ class Users(object):
                 self.controller.context['msg'] = 'Invalid email or password'
             else:
                 if u.password == password:
-                    return self.controller.redirect(self.controller.uri(controller='mails', action='index', email=email))
+                    return self.controller.redirect(self.controller.uri(controller='mails', action='index', user_email=email))
                 else:
                     self.controller.context['email'] = email
                     self.controller.context['msg'] = 'Invalid email or password'

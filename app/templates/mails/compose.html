@@ -4,16 +4,16 @@
 <div class="col-md-3">
   <ul class="nav nav-pills nav-stacked">
     <li role="presentation" class="active">
-      <a href="/mail/compose/{{email}}">
+      <a href="/mails/compose">
 	<span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Compose Mail</a></li>
-    <li role="presentation" ><a href="/mail/index/{{email}}">Inbox</a></li>
-    <li role="presentation"><a href="/mail/sentmails/{{email}}">Sent Mail</a></li>
+    <li role="presentation" ><a href="/mails/index/{{user_email}}">Inbox</a></li>
+    <li role="presentation"><a href="/mails/sentmails">Sent Mail</a></li>
   </ul>
 </div>
 <div class="col-md-8 panel panel-default" style="min-height:500px;padding-top:30px;">
   <h3>Compose Mail</h3>
   <hr>
-  <form action="/mail/compose/{{email}}" class="form" method="POST">
+  <form action="/mails/compose" class="form" method="POST">
     {%if status == "added"%}
     <p class="alert alert-success">Your message was succesfully sent!</p>
     {%endif%}
