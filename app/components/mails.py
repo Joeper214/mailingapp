@@ -77,11 +77,23 @@ class Mails(object):
                       'recipient': recipient,
                       'subject'  : subject,
                       'message'  : message}
-            
-            self.mail.create(params)
-            self.controller.context['status'] = 'added'
-            self.controller.context['user_email'] = sender
+
+            if self.is_valid_recipient():
+                self.mail.create(params)
+                self.controller.context['status'] = 'added'
+                self.controller.context['user_email'] = sender
+            else:
+                self.controller.context['user_email'] = sender
+                self.controller.context['subject'] = subject
+                self.controller.context['message'] = message
+                self.controller.context['e_msg'] = 'Please Input A valid and registered Recipient Email'
 
 
 
-    
+    def is_valid_recipient(self):
+        recipient = self.controller.request.params['recipient']
+        m = self.mail.find_by_recipient(recipient)
+        if m is None:
+            return False
+        else:
+            return True

@@ -17,6 +17,9 @@
     {%if status == "added"%}
     <p class="alert alert-success">Your message was succesfully sent!</p>
     {%endif%}
+    {%if e_msg%}
+      <p class="alert alert-danger">{{e_msg}}</p>
+    {%endif%}
     <input type="hidden" name="sender" value="{{email}}">
     <div class="form-group">
       <label>Recipient</label>
@@ -25,12 +28,12 @@
     
     <div class="form-group">
       <label>Subject</label>
-      <input name="subject" type="text" name="recipient" class="form-control" required="True">
+      <input name="subject" type="text" name="recipient" class="form-control" required="True" value="{{subject}}">
     </div>
     
     <div class="form-group">
       <label>Message</label>
-      <textarea name="message" class="form-control" required="True"></textarea>
+      <textarea name="message" class="form-control" required="True">{{messagex}}</textarea>
     </div>
     
     <div class="form-group">
