@@ -1,9 +1,10 @@
 from ferris import BasicModel, ndb
 from ferris.behaviors import searchable
+from app.behaviors.mail_behavior import MailBehavior
 
 class Mail(BasicModel):
     class Meta:
-        behaviors = (searchable.Searchable,)
+        behaviors = (searchable.Searchable, MailBehavior)
         search_index = ('global',)
 
     sender = ndb.StringProperty()

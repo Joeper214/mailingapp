@@ -1,6 +1,7 @@
 from google.appengine.ext import ndb
 from google.appengine.api import memcache
 from app.models.mail import Mail
+from app.models.user import User
 
 
 class Mails(object):
@@ -8,6 +9,7 @@ class Mails(object):
     def __init__(self, controller):
         self.controller = controller
         self.mail = Mail()
+        self.user = User()
 
     def inbox(self, user_email):
         data = memcache.get('mail_results')
@@ -78,7 +80,7 @@ class Mails(object):
                       'subject'  : subject,
                       'message'  : message}
 
-            if self.is_valid_recipient():
+            if self.is_valid_recipient()==True:
                 self.mail.create(params)
                 self.controller.context['status'] = 'added'
                 self.controller.context['user_email'] = sender
@@ -92,7 +94,7 @@ class Mails(object):
 
     def is_valid_recipient(self):
         recipient = self.controller.request.params['recipient']
-        m = self.mail.find_by_recipient(recipient)
+        m = self.user.find_by_email(recipient)
         if m is None:
             return False
         else:

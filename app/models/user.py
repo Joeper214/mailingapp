@@ -1,9 +1,12 @@
 from ferris import BasicModel, ndb
 from ferris.behaviors import searchable
+from app.behaviors.user_behavior import UserBehavior
+
+
 
 class User(BasicModel):
     class Meta:
-        behaviors = (searchable.Searchable,)
+        behaviors = (searchable.Searchable, UserBehavior)
         search_index = ('global',)
 
     email = ndb.StringProperty()
