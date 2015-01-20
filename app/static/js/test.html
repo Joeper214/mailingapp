@@ -25,13 +25,13 @@
 	  </ul>
 	</div>
       </nav>
-      <div class="container">
+
+      <div class="container" ng-view>
+	<span ng-bind="message"></span>
 	<select name="view" class="form-control">
 	  <option></option>
 	</select>
       </div>
-      {%block content%}
-      {%endblock%}
       <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
       <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
@@ -55,7 +55,7 @@
         controller: 'ShowOrdersController'
 	}).
 	when('/inbox2', {
-        templateUrl: '/mails/index2/{{user_email}}',
+        templateUrl: 'inbox.html',
         controller: 'ShowOrdersController'
 	}).
 	otherwise({
@@ -74,6 +74,7 @@
 	sampleApp.controller('ShowOrdersController', function($scope) {
 	
 	$scope.message = 'This is Show orders screen';
+	
 	
 	});
       </script> 
